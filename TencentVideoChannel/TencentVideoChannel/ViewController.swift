@@ -36,7 +36,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if section == datasource.count - 1 {
+        if section == datasource.count {
             return 30;
         }
         
@@ -88,20 +88,31 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let indexPath = IndexPath(item: 0, section: 1);
         let attr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
         
-        if scrollView.contentOffset.y >= ((attr?.frame.origin.y)! ) {
-            menuView.isHidden = false;
-        }else {
+        if scrollView.contentOffset.y < ((attr?.frame.origin.y)! ) {
             menuView.isHidden = true;
+            return;
         }
         
-        let sectionIndexPath = IndexPath(item: 0, section: menuView.currentIndex + 1);
-        let sectionAttr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: sectionIndexPath)
+        menuView.isHidden = false;
         
-        if scrollView.contentOffset.y + 50 > (sectionAttr?.frame.maxY)! {
-            collectionView.indexPathForItem(at: <#T##CGPoint#>)
+        let currentIndexPath = IndexPath(item: 0, section: menuView.currentIndex + 1);
+        let currentAttr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: currentIndexPath)
+        
+        if scrollView.contentOffset.y + 50 < (currentAttr?.frame.minY)! {
+            menuView.setSelectedIndex(index: menuView.currentIndex - 1, animated: true);
+        }else {
+            let nextIndexPath = IndexPath(item: 0, section: menuView.currentIndex + 2);
+            
+            if nextIndexPath.section > datasource.count {
+                return;
+            }
+            
+            let nextAttr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: nextIndexPath)
+            if nextAttr != nil && scrollView.contentOffset.y + 50 > (nextAttr?.frame.minY)!{
+                menuView.setSelectedIndex(index: menuView.currentIndex + 1, animated: true)
+            }
+
         }
-        
-        menuView.setSelectedIndex(index: indexPath.section-1, animated: true);
         
         
     }

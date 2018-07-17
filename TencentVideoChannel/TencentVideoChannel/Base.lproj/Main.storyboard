@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TencentVideoChannel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qHr-9x-sG1">
+                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XN4-qp-jcI">
+                                    <size key="itemSize" width="131" height="100"/>
+                                    <size key="headerReferenceSize" width="50" height="80"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ib_numberItemsForRow">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="channelCellIdf" id="LOI-zv-6eF" customClass="ORChannelCell" customModule="TencentVideoChannel" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="80" width="131" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="131" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSO-jT-bSr">
+                                                    <rect key="frame" x="8" y="8" width="33" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptFont" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="wSO-jT-bSr" firstAttribute="leading" secondItem="LOI-zv-6eF" secondAttribute="leadingMargin" id="DL9-nk-Xyz"/>
+                                            <constraint firstItem="wSO-jT-bSr" firstAttribute="top" secondItem="LOI-zv-6eF" secondAttribute="topMargin" id="pro-0i-UR9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ib_cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="titleL" destination="wSO-jT-bSr" id="2iE-Z8-j7x"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myChannelIdf" id="NjR-6F-IJ7" customClass="ORMyChannelHeader" customModule="TencentVideoChannel" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的频道" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfD-l8-Maf">
+                                            <rect key="frame" x="15" y="39.5" width="70" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptFont" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-7E-j78">
+                                            <rect key="frame" x="311" y="34.5" width="51" height="31"/>
+                                            <color key="onTintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="action_sortSwitch:" destination="NjR-6F-IJ7" eventType="valueChanged" id="3nv-eR-SnI"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动排序(小编推荐排序)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txh-Gk-R2q">
+                                            <rect key="frame" x="161" y="42" width="142" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LfD-l8-Maf" firstAttribute="leading" secondItem="NjR-6F-IJ7" secondAttribute="leading" constant="15" id="3tl-s1-zr1">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptConstant" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </constraint>
+                                        <constraint firstItem="Txh-Gk-R2q" firstAttribute="centerY" secondItem="y5q-7E-j78" secondAttribute="centerY" id="MdV-EM-xSv"/>
+                                        <constraint firstItem="y5q-7E-j78" firstAttribute="centerY" secondItem="LfD-l8-Maf" secondAttribute="centerY" id="Tce-cK-2pf"/>
+                                        <constraint firstItem="y5q-7E-j78" firstAttribute="leading" secondItem="Txh-Gk-R2q" secondAttribute="trailing" constant="8" id="l5j-nd-484"/>
+                                        <constraint firstAttribute="trailing" secondItem="y5q-7E-j78" secondAttribute="trailing" constant="15" id="lWn-eb-JlC"/>
+                                        <constraint firstItem="LfD-l8-Maf" firstAttribute="centerY" secondItem="NjR-6F-IJ7" secondAttribute="centerY" constant="10" id="nXd-Rh-uiu"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="sortDescriptionL" destination="Txh-Gk-R2q" id="OWN-54-6Jx"/>
+                                        <outlet property="sortSwitch" destination="y5q-7E-j78" id="E7A-Zv-nPR"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="1Fm-DX-clv"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ls4-kA-1gY"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rab-bz-vX5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部频道" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pag-zU-yR5">
+                                        <rect key="frame" x="15" y="36" width="93.5" height="27.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eeg-JV-rOv">
+                                        <rect key="frame" x="15" y="74.5" width="345" height="0.5"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="Pur-NX-3LN"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Eeg-JV-rOv" secondAttribute="bottom" id="OnJ-P8-dd5"/>
+                                    <constraint firstItem="Eeg-JV-rOv" firstAttribute="top" secondItem="Pag-zU-yR5" secondAttribute="bottom" constant="11" id="j9y-lW-fbO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eeg-JV-rOv" secondAttribute="trailing" constant="15" id="kpk-WX-rwU">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="75" id="ulY-rz-VCu">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptXTopConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="Eeg-JV-rOv" firstAttribute="leading" secondItem="rab-bz-vX5" secondAttribute="leading" constant="15" id="xEq-Y5-MkQ">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="Pag-zU-yR5" firstAttribute="leading" secondItem="rab-bz-vX5" secondAttribute="leading" constant="15" id="xcd-WA-05U">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qHr-9x-sG1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5To-5h-Ejt"/>
+                            <constraint firstItem="rab-bz-vX5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6Nn-g2-rrv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qHr-9x-sG1" secondAttribute="trailing" id="KfW-TX-g0g"/>
+                            <constraint firstItem="qHr-9x-sG1" firstAttribute="top" secondItem="rab-bz-vX5" secondAttribute="bottom" id="pt4-RE-Hrb"/>
+                            <constraint firstItem="rab-bz-vX5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qNK-VW-ynq"/>
+                            <constraint firstItem="rab-bz-vX5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="uyO-ny-ynn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qHr-9x-sG1" secondAttribute="bottom" id="y3g-Mi-uyq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="qHr-9x-sG1" id="EZQ-lH-QH1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
+        </scene>
+    </scenes>
+</document>

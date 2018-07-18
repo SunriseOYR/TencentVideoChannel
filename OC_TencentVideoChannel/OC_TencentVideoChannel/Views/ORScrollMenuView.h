@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#define H_P(X) X * [UIScreen mainScreen].bounds.size.width / 375.0f
+
 @interface ORScrollMenuView : UIView
+
+@property (nonatomic, copy) void(^menuDidSelectConfig)(NSInteger index);
+
+@property (nonatomic, assign, readonly) NSInteger currentIndex;
+
+@property (nonatomic, strong) UIColor *tintColor;
 
 @end

@@ -12,7 +12,7 @@ class ORScrollMenuView: UIView {
 
     private let scrollView = UIScrollView()
     private let slider = UIView()
-    private var selectIndex = 0
+    private var currentTag = 2018
     private let btnTag = 2018
     
     var tintClor: UIColor? {
@@ -31,10 +31,9 @@ class ORScrollMenuView: UIView {
     
     var currentIndex :Int {
         get {
-            return max(selectIndex-btnTag, 0)
+            return max(currentTag-btnTag, 0)
         }
     }
-    
     
     init(frame: CGRect, titles:[String]) {
         super.init(frame: frame)
@@ -61,8 +60,6 @@ class ORScrollMenuView: UIView {
             scrollView.contentInsetAdjustmentBehavior = .never
         }
         
-//        scrollView.contentInset.left = 4.0 * UIScreen.main.bounds.width / 375.0
-        
         var width:CGFloat = 0.0;
         
         let intence = 30.0 * UIScreen.main.bounds.width / 375.0;
@@ -80,7 +77,6 @@ class ORScrollMenuView: UIView {
             btn.setTitle(value, for: .normal);
             btn.setTitleColor(UIColor.darkGray, for: .normal);
             btn.setTitleColor(UIColor.orange, for: .selected);
-            
             btn.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
             
             btn.tag = index + btnTag
@@ -97,9 +93,17 @@ class ORScrollMenuView: UIView {
             width += btw;
         }
         
-        
         scrollView.contentSize = CGSize(width: width, height: 0);
         
+    }
+    
+    @objc private func action_btn(btn:UIButton) {
+        
+        setSelectedIndex(index: btn.tag - btnTag, animated: true)
+        
+        if menuDidSelectedClosure != nil {
+            menuDidSelectedClosure!(btn.tag - btnTag)
+        }
     }
     
     private func btnStateChanged(currentBtn: UIButton, lastBtn:UIButton?) {
@@ -115,17 +119,15 @@ class ORScrollMenuView: UIView {
         }
     }
     
-    
     public func setSelectedIndex(index:Int, animated:Bool) {
         
-        
-        if index == selectIndex - btnTag {
+        if index == currentTag - btnTag {
             return;
         }
         
         let btn: UIButton = scrollView.viewWithTag(index + btnTag) as! UIButton
         
-        let lastBtn: UIButton? = scrollView.viewWithTag(selectIndex) as? UIButton
+        let lastBtn: UIButton? = scrollView.viewWithTag(currentTag) as? UIButton
         
         //计算偏移
         let btnCenter = scrollView.convert(btn.center, to: self)
@@ -151,17 +153,7 @@ class ORScrollMenuView: UIView {
         
         scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x + inset, y: 0), animated: animated)
 
-        selectIndex = btn.tag
-    }
-    
-    @objc private func action_btn(btn:UIButton) {
-        
-        setSelectedIndex(index: btn.tag - btnTag, animated: true)
-        
-        if menuDidSelectedClosure != nil {
-            menuDidSelectedClosure!(btn.tag - btnTag)
-        }
-        
+        currentTag = btn.tag
     }
     
 }

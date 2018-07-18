@@ -1,0 +1,20 @@
+PODS:
+  - Aspects (1.4.1)
+  - IBProperty (1.1.9):
+    - Aspects (~> 1.4.1)
+
+DEPENDENCIES:
+  - IBProperty
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Aspects
+    - IBProperty
+
+SPEC CHECKSUMS:
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  IBProperty: 17f424500b91b865a4b08a857357c41f304e2c69
+
+PODFILE CHECKSUM: 95f4186a01ed1d39af154a6524be362cee2f2a91
+
+COCOAPODS: 1.5.3

@@ -1,0 +1,6 @@
+framework module IBProperty {
+  umbrella header "IBProperty-umbrella.h"
+
+  export *
+  module * { export * }
+}

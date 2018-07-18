@@ -1,0 +1,6 @@
+framework module Pods_OC_TencentVideoChannel {
+  umbrella header "Pods-OC_TencentVideoChannel-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -12,12 +12,13 @@ class ORScrollMenuView: UIView {
 
     private let scrollView = UIScrollView()
     private let slider = UIView()
-    private var selectIndex = 0;
+    private var selectIndex = 0
+    private let btnTag = 2018
     
     var tintClor: UIColor? {
         didSet {
             for index in 0..<titles.count {
-                let btn:UIButton = scrollView.viewWithTag(index + 2018) as! UIButton
+                let btn:UIButton = scrollView.viewWithTag(index + btnTag) as! UIButton
                 btn.setTitleColor(tintClor!, for: .selected);
             }
             self.slider.backgroundColor = tintClor!
@@ -30,7 +31,7 @@ class ORScrollMenuView: UIView {
     
     var currentIndex :Int {
         get {
-            return max(selectIndex-2018, 0)
+            return max(selectIndex-btnTag, 0)
         }
     }
     
@@ -82,7 +83,7 @@ class ORScrollMenuView: UIView {
             
             btn.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
             
-            btn.tag = index + 2018
+            btn.tag = index + btnTag
             
             scrollView.addSubview(btn)
             
@@ -118,11 +119,11 @@ class ORScrollMenuView: UIView {
     public func setSelectedIndex(index:Int, animated:Bool) {
         
         
-        if index == selectIndex - 2018 {
+        if index == selectIndex - btnTag {
             return;
         }
         
-        let btn: UIButton = scrollView.viewWithTag(index + 2018) as! UIButton
+        let btn: UIButton = scrollView.viewWithTag(index + btnTag) as! UIButton
         
         let lastBtn: UIButton? = scrollView.viewWithTag(selectIndex) as? UIButton
         
@@ -155,10 +156,10 @@ class ORScrollMenuView: UIView {
     
     @objc private func action_btn(btn:UIButton) {
         
-        setSelectedIndex(index: btn.tag - 2018, animated: true)
+        setSelectedIndex(index: btn.tag - btnTag, animated: true)
         
         if menuDidSelectedClosure != nil {
-            menuDidSelectedClosure!(btn.tag - 2018)
+            menuDidSelectedClosure!(btn.tag - btnTag)
         }
         
     }

@@ -187,13 +187,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         if section == 1 {
             
-            let bottowInset:CGFloat = UIScreen.main.bounds.height > 800 ? 10 + 34 : 10
-            return UIEdgeInsetsMake(insetLeft, insetLeft, bottowInset, insetLeft)
+            return UIEdgeInsetsMake(insetLeft, insetLeft, 0, insetLeft)
         }
         
         if section == datasource.count {
-            
-            return UIEdgeInsetsMake(0, insetLeft, 0, insetLeft)
+            return UIEdgeInsetsMake(0, insetLeft, 10, insetLeft)
         }
         
         return UIEdgeInsetsMake(0, insetLeft, 0, insetLeft)

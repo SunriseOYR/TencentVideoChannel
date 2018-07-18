@@ -26,6 +26,8 @@ class ORScrollMenuView: UIView {
     
     var titles:[String]!
     
+    var menuDidSelectedClosure:((Int)->Void)?;
+    
     var currentIndex :Int {
         get {
             return max(selectIndex-2018, 0)
@@ -152,7 +154,13 @@ class ORScrollMenuView: UIView {
     }
     
     @objc private func action_btn(btn:UIButton) {
+        
         setSelectedIndex(index: btn.tag - 2018, animated: true)
+        
+        if menuDidSelectedClosure != nil {
+            menuDidSelectedClosure!(btn.tag - 2018)
+        }
+        
     }
     
 }

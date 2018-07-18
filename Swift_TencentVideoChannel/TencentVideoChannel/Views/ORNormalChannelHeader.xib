@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ORNormalChannelHeader" customModule="TencentVideoChannel" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ORNormalChannelHeader" customModule="OC_TencentVideoChannel" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="231" height="57"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -41,7 +41,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="231" height="57"/>
             <connections>
-                <outlet property="titleL" destination="x5u-qj-MDo" id="Whm-4V-hmD"/>
+                <outlet property="titleL" destination="x5u-qj-MDo" id="hfS-gi-par"/>
             </connections>
             <point key="canvasLocation" x="116.5" y="55.5"/>
         </collectionViewCell>

@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OC_TencentVideoChannel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="channelCellIdf" id="LOI-zv-6eF" customClass="ORChannelCell" customModule="OC_TencentVideoChannel" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ORChannelCell" id="LOI-zv-6eF" customClass="ORChannelCell">
                                         <rect key="frame" x="15" y="80" width="131" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -63,7 +63,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="titleL" destination="wSO-jT-bSr" id="2iE-Z8-j7x"/>
+                                            <outlet property="titleL" destination="wSO-jT-bSr" id="Ug4-fz-yYW"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -84,7 +84,7 @@
                                             <rect key="frame" x="311" y="34.5" width="51" height="31"/>
                                             <color key="onTintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <action selector="action_sortSwitch:" destination="NjR-6F-IJ7" eventType="valueChanged" id="3nv-eR-SnI"/>
+                                                <action selector="action_sortSwitch:" destination="NjR-6F-IJ7" eventType="valueChanged" id="MtI-Y1-ev4"/>
                                             </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动排序(小编推荐排序)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txh-Gk-R2q">
@@ -107,8 +107,8 @@
                                         <constraint firstItem="LfD-l8-Maf" firstAttribute="centerY" secondItem="NjR-6F-IJ7" secondAttribute="centerY" constant="10" id="nXd-Rh-uiu"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="sortDescriptionL" destination="Txh-Gk-R2q" id="OWN-54-6Jx"/>
-                                        <outlet property="sortSwitch" destination="y5q-7E-j78" id="E7A-Zv-nPR"/>
+                                        <outlet property="sortDescriptionL" destination="Txh-Gk-R2q" id="0GA-0C-0ge"/>
+                                        <outlet property="sortSwitch" destination="y5q-7E-j78" id="P66-jk-q4v"/>
                                     </connections>
                                 </collectionReusableView>
                                 <connections>
@@ -173,7 +173,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="qHr-9x-sG1" id="P11-Wl-Eu8"/>
+                        <outlet property="collectionView" destination="qHr-9x-sG1" id="diy-R7-Yv9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

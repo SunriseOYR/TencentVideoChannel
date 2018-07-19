@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B648C44EBA43780C64CB1BB9 /* Pods_TencentVideoChannel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3E6989A55220A08833047A /* Pods_TencentVideoChannel.framework */; };
 		C9F32E4B20FDB66B00A9D381 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F32E4A20FDB66B00A9D381 /* AppDelegate.swift */; };
-		C9F32E4D20FDB66B00A9D381 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F32E4C20FDB66B00A9D381 /* ViewController.swift */; };
+		C9F32E4D20FDB66B00A9D381 /* d.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F32E4C20FDB66B00A9D381 /* d.swift */; };
 		C9F32E5020FDB66B00A9D381 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F32E4E20FDB66B00A9D381 /* Main.storyboard */; };
 		C9F32E5220FDB66B00A9D381 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F32E5120FDB66B00A9D381 /* Assets.xcassets */; };
 		C9F32E5520FDB66B00A9D381 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F32E5320FDB66B00A9D381 /* LaunchScreen.storyboard */; };
@@ -26,7 +26,7 @@
 		9742E14C4752FF09B75FBB02 /* Pods-TencentVideoChannel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TencentVideoChannel.release.xcconfig"; path = "Pods/Target Support Files/Pods-TencentVideoChannel/Pods-TencentVideoChannel.release.xcconfig"; sourceTree = "<group>"; };
 		C9F32E4720FDB66B00A9D381 /* TencentVideoChannel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TencentVideoChannel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F32E4A20FDB66B00A9D381 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9F32E4C20FDB66B00A9D381 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C9F32E4C20FDB66B00A9D381 /* d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = d.swift; sourceTree = "<group>"; };
 		C9F32E4F20FDB66B00A9D381 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9F32E5120FDB66B00A9D381 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9F32E5420FDB66B00A9D381 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				C9F32E4A20FDB66B00A9D381 /* AppDelegate.swift */,
-				C9F32E4C20FDB66B00A9D381 /* ViewController.swift */,
+				C9F32E4C20FDB66B00A9D381 /* d.swift */,
 				C9F32E5C20FDBDCD00A9D381 /* Views */,
 				C9F32E4E20FDB66B00A9D381 /* Main.storyboard */,
 				C9F32E5120FDB66B00A9D381 /* Assets.xcassets */,
@@ -230,7 +230,7 @@
 				C9F32E6A20FDD07700A9D381 /* ORScrollMenuView.swift in Sources */,
 				C9F32E6420FDBEA000A9D381 /* ORChannelCell.swift in Sources */,
 				C9F32E5E20FDBE2000A9D381 /* ORMyChannelHeader.swift in Sources */,
-				C9F32E4D20FDB66B00A9D381 /* ViewController.swift in Sources */,
+				C9F32E4D20FDB66B00A9D381 /* d.swift in Sources */,
 				C9F32E4B20FDB66B00A9D381 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

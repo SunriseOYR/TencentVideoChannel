@@ -18,4 +18,7 @@
 
 @property (nonatomic, strong) UIColor *tintColor;
 
+@property (nonatomic, strong) NSArray<NSString *> *titles;
+
+
 @end

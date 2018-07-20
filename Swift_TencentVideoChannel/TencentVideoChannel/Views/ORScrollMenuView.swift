@@ -25,7 +25,7 @@ class ORScrollMenuView: UIView {
         }
     }
     
-    var titles:[String]!
+    var titles:[String]! 
     
     var menuDidSelectedClosure:((Int)->Void)?;
     

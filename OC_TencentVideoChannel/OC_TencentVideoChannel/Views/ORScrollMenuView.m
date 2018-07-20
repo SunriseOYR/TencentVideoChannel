@@ -14,7 +14,6 @@ static NSInteger const btnTag = 2018;
     NSInteger _currentTag;
 }
 
-@property (nonatomic, strong) NSArray<NSString *> *titles;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *slider;
 
@@ -22,44 +21,44 @@ static NSInteger const btnTag = 2018;
 
 @implementation ORScrollMenuView
 
-- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString *>*)titles
+- (instancetype)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
-        _titles = titles;
         [self _or_initilaizeUI];
     }
     return self;
 }
+
 
 - (void)_or_initilaizeUI {
     
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.slider];
     
-    __block CGFloat contentW = 0.f;
-    
-    [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat btw = [obj boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:H_P(18)]} context:nil].size.width + H_P(30);
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(contentW, 0, btw, self.bounds.size.height-5);
-        [btn setTitle:obj forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
-        btn.tag = idx + btnTag;
-        [self.scrollView addSubview:btn];
-        
-        if (idx == 0) {
-            self.slider.center = CGPointMake(btw / 2.0, btn.center.y + H_P(18));
-            [self _or_action_btn:btn];
-        }
-        [btn addTarget:self action:@selector(_or_action_btn:) forControlEvents:UIControlEventTouchUpInside];
-        contentW += btw;
-    }];
-    
-    _scrollView.contentSize = CGSizeMake(contentW, 0);
+//    __block CGFloat contentW = 0.f;
+//
+//    [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        CGFloat btw = [obj boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:H_P(18)]} context:nil].size.width + H_P(30);
+//
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.frame = CGRectMake(contentW, 0, btw, self.bounds.size.height-5);
+//        [btn setTitle:obj forState:UIControlStateNormal];
+//        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
+//        btn.tag = idx + btnTag;
+//        [self.scrollView addSubview:btn];
+//
+//        if (idx == 0) {
+//            self.slider.center = CGPointMake(btw / 2.0, btn.center.y + H_P(18));
+//            [self _or_action_btn:btn];
+//        }
+//        [btn addTarget:self action:@selector(_or_action_btn:) forControlEvents:UIControlEventTouchUpInside];
+//        contentW += btw;
+//    }];
+//
+//    _scrollView.contentSize = CGSizeMake(contentW, 0);
 }
 
 - (void)_or_action_btn:(UIButton *)sender {
@@ -120,6 +119,49 @@ static NSInteger const btnTag = 2018;
 
 
 #pragma mark -- getter && setter
+
+- (void)setTitles:(NSArray<NSString *> *)titles {
+    
+    _titles = titles;
+    
+    _slider.hidden = _titles.count == 0;
+    
+    if (_titles.count == 0) {
+        return;
+    }
+    
+    [_scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIButton class]]) {
+            [obj removeFromSuperview];
+        }
+    }];
+    
+    _currentTag = 0;
+    __block CGFloat contentW = 0.f;
+    
+    [_titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat btw = [obj boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:H_P(18)]} context:nil].size.width + H_P(30);
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(contentW, 0, btw, self.bounds.size.height-5);
+        [btn setTitle:obj forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
+        btn.tag = idx + btnTag;
+        [self.scrollView addSubview:btn];
+        
+        if (idx == 0) {
+            self.slider.center = CGPointMake(btw / 2.0, btn.center.y + H_P(12));
+            [self or_setSelectIndex:idx animated:NO];
+        }
+        [btn addTarget:self action:@selector(_or_action_btn:) forControlEvents:UIControlEventTouchUpInside];
+        contentW += btw;
+    }];
+    
+    _scrollView.contentSize = CGSizeMake(contentW, 0);
+    
+}
 
 - (UIScrollView *)scrollView {
     if (!_scrollView) {

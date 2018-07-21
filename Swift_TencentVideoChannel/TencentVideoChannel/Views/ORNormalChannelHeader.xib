@@ -12,38 +12,29 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ORNormalChannelHeader" customModule="OC_TencentVideoChannel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="231" height="57"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="231" height="57"/>
-                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-qj-MDo">
-                        <rect key="frame" x="15" y="19" width="39" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptFont" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
-                </subviews>
-            </view>
-            <constraints>
-                <constraint firstItem="x5u-qj-MDo" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="C59-sD-2A6"/>
-                <constraint firstItem="x5u-qj-MDo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="i1S-EZ-1hv">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fHZ-LW-Lec" customClass="ORNormalChannelHeader">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJr-KG-UmE">
+                    <rect key="frame" x="15" y="14.5" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptConstant" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptFont" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                </constraint>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="pJr-KG-UmE" firstAttribute="centerY" secondItem="hzp-Z4-0sM" secondAttribute="centerY" id="6GB-u8-jOW"/>
+                <constraint firstItem="pJr-KG-UmE" firstAttribute="leading" secondItem="hzp-Z4-0sM" secondAttribute="leading" constant="15" id="g6q-Oc-1fQ"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="231" height="57"/>
+            <viewLayoutGuide key="safeArea" id="hzp-Z4-0sM"/>
             <connections>
-                <outlet property="titleL" destination="x5u-qj-MDo" id="hfS-gi-par"/>
+                <outlet property="titleL" destination="pJr-KG-UmE" id="avb-R9-f9f"/>
             </connections>
-            <point key="canvasLocation" x="116.5" y="55.5"/>
-        </collectionViewCell>
+            <point key="canvasLocation" x="190" y="307"/>
+        </collectionReusableView>
     </objects>
 </document>

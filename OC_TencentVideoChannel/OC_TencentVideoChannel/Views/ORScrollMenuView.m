@@ -30,35 +30,64 @@ static NSInteger const btnTag = 2018;
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self _or_initilaizeUI];
+    }
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.scrollView.frame = self.bounds;
+}
 
 - (void)_or_initilaizeUI {
     
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.slider];
+}
+
+- (void)_or_setSubViews {
     
-//    __block CGFloat contentW = 0.f;
-//
-//    [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        CGFloat btw = [obj boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:H_P(18)]} context:nil].size.width + H_P(30);
-//
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.frame = CGRectMake(contentW, 0, btw, self.bounds.size.height-5);
-//        [btn setTitle:obj forState:UIControlStateNormal];
-//        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
-//        btn.tag = idx + btnTag;
-//        [self.scrollView addSubview:btn];
-//
-//        if (idx == 0) {
-//            self.slider.center = CGPointMake(btw / 2.0, btn.center.y + H_P(18));
-//            [self _or_action_btn:btn];
-//        }
-//        [btn addTarget:self action:@selector(_or_action_btn:) forControlEvents:UIControlEventTouchUpInside];
-//        contentW += btw;
-//    }];
-//
-//    _scrollView.contentSize = CGSizeMake(contentW, 0);
+    _slider.hidden = _titles.count == 0;
+    
+    if (_titles.count == 0) {
+        return;
+    }
+    
+    [_scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UIButton class]]) {
+            [obj removeFromSuperview];
+        }
+    }];
+    
+    _currentTag = 0;
+    __block CGFloat contentW = 0.f;
+    
+    [_titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat btw = [obj boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:H_P(18)]} context:nil].size.width + H_P(30);
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(contentW, 0, btw, self.bounds.size.height-5);
+        [btn setTitle:obj forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
+        btn.tag = idx + btnTag;
+        [self.scrollView addSubview:btn];
+        
+        if (idx == 0) {
+            self.slider.center = CGPointMake(btw / 2.0, btn.center.y + H_P(17));
+            [self or_setSelectIndex:idx animated:NO];
+        }
+        [btn addTarget:self action:@selector(_or_action_btn:) forControlEvents:UIControlEventTouchUpInside];
+        contentW += btw;
+    }];
+    
+    _scrollView.contentSize = CGSizeMake(contentW, 0);
 }
 
 - (void)_or_action_btn:(UIButton *)sender {
@@ -74,14 +103,15 @@ static NSInteger const btnTag = 2018;
     center.x = btn.center.x;
     _slider.center = center;
     
-    btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18) weight:2.3];
-    btn.selected = YES;
+    if (btn && [btn isKindOfClass:[UIButton class]]) {
+        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18) weight:2.3];
+        btn.selected = YES;
+    }
     
-    if (lastBtn) {
+    if (lastBtn && [lastBtn isKindOfClass:[UIButton class]]) {
         lastBtn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
         lastBtn.selected = NO;
     }
-    
 }
 
 - (void)or_setSelectIndex:(NSInteger)index animated:(BOOL)animated {
@@ -117,50 +147,25 @@ static NSInteger const btnTag = 2018;
     _currentTag = btn.tag;
 }
 
+- (void)or_setNormalColor:(UIColor *)normalColor selectedColor:(UIColor *)selectedColor {
+    
+    [_titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *btn = [self.scrollView viewWithTag:idx + btnTag];
+        if (selectedColor) {
+            [btn setTitleColor:selectedColor forState:UIControlStateSelected];
+        }
+        if (normalColor) {
+            [btn setTitleColor:normalColor forState:UIControlStateNormal];
+        }
+    }];
+}
 
 #pragma mark -- getter && setter
 
 - (void)setTitles:(NSArray<NSString *> *)titles {
     
     _titles = titles;
-    
-    _slider.hidden = _titles.count == 0;
-    
-    if (_titles.count == 0) {
-        return;
-    }
-    
-    [_scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[UIButton class]]) {
-            [obj removeFromSuperview];
-        }
-    }];
-    
-    _currentTag = 0;
-    __block CGFloat contentW = 0.f;
-    
-    [_titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat btw = [obj boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:H_P(18)]} context:nil].size.width + H_P(30);
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(contentW, 0, btw, self.bounds.size.height-5);
-        [btn setTitle:obj forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:H_P(18)];
-        btn.tag = idx + btnTag;
-        [self.scrollView addSubview:btn];
-        
-        if (idx == 0) {
-            self.slider.center = CGPointMake(btw / 2.0, btn.center.y + H_P(12));
-            [self or_setSelectIndex:idx animated:NO];
-        }
-        [btn addTarget:self action:@selector(_or_action_btn:) forControlEvents:UIControlEventTouchUpInside];
-        contentW += btw;
-    }];
-    
-    _scrollView.contentSize = CGSizeMake(contentW, 0);
-    
+    [self _or_setSubViews];
 }
 
 - (UIScrollView *)scrollView {
@@ -187,10 +192,6 @@ static NSInteger const btnTag = 2018;
 }
 
 - (void)setTintColor:(UIColor *)tintColor {
-    [_titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *btn = [self.scrollView viewWithTag:idx + btnTag];
-        [btn setTitleColor:tintColor forState:UIControlStateSelected];
-    }];
     self.slider.backgroundColor = tintColor;
 }
 

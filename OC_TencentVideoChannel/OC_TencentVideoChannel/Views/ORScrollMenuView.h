@@ -16,9 +16,12 @@
 
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
 
-@property (nonatomic, strong) UIColor *tintColor;
+@property (nonatomic, strong) UIColor *sliderColor;
 
 @property (nonatomic, strong) NSArray<NSString *> *titles;
 
+- (void)or_setSelectIndex:(NSInteger)index animated:(BOOL)animated;
+
+- (void)or_setNormalColor:(UIColor *)normalColor selectedColor:(UIColor *)selectedColor;
 
 @end

@@ -47,9 +47,10 @@ static CGFloat const menuHeight = 55.0;
     self.menuView = [ORScrollMenuView new];
     self.menuView.frame = CGRectMake(0, menuY, [UIScreen mainScreen].bounds.size.width, menuHeight);
     self.menuView.titles = _dataSource;
-    [self.view addSubview:self.menuView];
     self.menuView.backgroundColor = Tint_Back_Color;
     self.menuView.hidden = YES;
+    [self.view addSubview:self.menuView];
+
     __weak typeof(self) weakSelf = self;
     [_menuView setMenuDidSelectConfig:^(NSInteger index) {
         [weakSelf _or_collectionViewOffsetAjustMenuWithIndex:index];

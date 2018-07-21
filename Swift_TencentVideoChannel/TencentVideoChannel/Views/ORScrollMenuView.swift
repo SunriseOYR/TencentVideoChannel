@@ -8,6 +8,8 @@
 
 import UIKit
 
+let H_PRDIO = UIScreen.main.bounds.width / 375.0
+
 class ORScrollMenuView: UIView {
 
     private let scrollView = UIScrollView()
@@ -16,12 +18,13 @@ class ORScrollMenuView: UIView {
     private let btnTag = 2018
     
     var tintClor: UIColor? {
-        didSet {
-            for index in 0..<titles.count {
-                let btn:UIButton = scrollView.viewWithTag(index + btnTag) as! UIButton
-                btn.setTitleColor(tintClor!, for: .selected);
-            }
-            self.slider.backgroundColor = tintClor!
+        
+        get {
+            return slider.backgroundColor
+        }
+        
+        set {
+            self.slider.backgroundColor = newValue
         }
     }
     
@@ -62,8 +65,8 @@ class ORScrollMenuView: UIView {
         
         var width:CGFloat = 0.0;
         
-        let intence = 30.0 * UIScreen.main.bounds.width / 375.0;
-        let fontSize = 18.0 * UIScreen.main.bounds.width / 375.0;
+        let intence = 30.0 * H_PRDIO;
+        let fontSize = 18.0 * H_PRDIO;
 
         
         for (index, value) in self.titles.enumerated() {

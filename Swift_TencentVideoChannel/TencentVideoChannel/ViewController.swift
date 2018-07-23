@@ -18,7 +18,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private let menuIdentifer = "menuChannelIdf"
     private let normalIdentifer = "normalChannelIdf"
     
-    private let datasource = ["大IP", "HOT", "衍生", "影视综", "游戏", "搞笑", "生活", "体育", "时尚", "音乐", "育儿", "旅游", "视听体验", "其他", "默认"]
+    private let dataSource = ["大IP", "HOT", "衍生", "影视综", "游戏", "搞笑", "生活", "体育", "时尚", "音乐", "育儿", "旅游", "视听体验", "其他", "默认"]
     
     private var menuView :ORScrollMenuView!
     
@@ -35,7 +35,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
         let menuY:CGFloat = UIScreen.main.bounds.height > 800 ? 75 + 24 : 75
         
-        menuView  = ORScrollMenuView(frame: CGRect(x: 0, y: menuY, width: self.view.bounds.width, height: menuHeight), titles: datasource)
+        menuView  = ORScrollMenuView(frame: CGRect(x: 0, y: menuY, width: self.view.bounds.width, height: menuHeight))
+        menuView.titles = dataSource;
         menuView.backgroundColor = tintColor
         
         self.view.addSubview(menuView)
@@ -62,7 +63,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if section == datasource.count {
+        if section == dataSource.count {
             return 31;
         }
         
@@ -70,7 +71,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return datasource.count + 1
+        return dataSource.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,22 +93,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 
                 var view:ORScrollMenuView? = header.viewWithTag(2019) as? ORScrollMenuView;
                 if view == nil {
-                    view = ORScrollMenuView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: menuHeight), titles: datasource)
+                    view = ORScrollMenuView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: menuHeight))
+                    view?.titles = dataSource;
                     view?.tag = 2019;
                     header.addSubview(view!);
                     view?.menuDidSelectedClosure = {[unowned self](index:Int) in
                         self.collectionViewOffsetAjustMenuWithIndex(index: index)
-                        self.menuView.setSelectedIndex(index: index, animated: true)
+                        self.menuView.or_setSelectedIndex(index: index, animated: true)
                     }
                 }
                 
-                view?.setSelectedIndex(index: menuView.currentIndex, animated: false)
+                view?.or_setSelectedIndex(index: menuView.currentIndex, animated: false)
                 
                 return header;
             }
             
             let header:ORNormalChannelHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: normalIdentifer, for: indexPath) as! ORNormalChannelHeader;
-            header.titleL.text = datasource[indexPath.section - 1];
+            header.titleL.text = dataSource[indexPath.section - 1];
             return header;
             
         }
@@ -143,17 +145,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let currentAttr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: currentIndexPath)
         
         if scrollView.contentOffset.y + menuHeight < (currentAttr?.frame.minY)! {
-            menuView.setSelectedIndex(index: menuView.currentIndex - 1, animated: true);
+            menuView.or_setSelectedIndex(index: menuView.currentIndex - 1, animated: true);
         }else {
             let nextIndexPath = IndexPath(item: 0, section: menuView.currentIndex + 2);
             
-            if nextIndexPath.section > datasource.count {
+            if nextIndexPath.section > dataSource.count {
                 return;
             }
             
             let nextAttr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: nextIndexPath)
             if nextAttr != nil && scrollView.contentOffset.y + menuHeight > (nextAttr?.frame.minY)!{
-                menuView.setSelectedIndex(index: menuView.currentIndex + 1, animated: true)
+                menuView.or_setSelectedIndex(index: menuView.currentIndex + 1, animated: true)
             }
         }
     }
@@ -180,7 +182,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        let insetLeft = 15.0 * UIScreen.main.bounds.width / 375.0
+        let insetLeft = 15.0 * H_PRATIO
         
         if section == 0 {
             return UIEdgeInsetsMake(0, insetLeft, insetLeft, insetLeft)
@@ -190,7 +192,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return UIEdgeInsetsMake(insetLeft, insetLeft, 0, insetLeft)
         }
         
-        if section == datasource.count {
+        if section == dataSource.count {
             return UIEdgeInsetsMake(0, insetLeft, 10, insetLeft)
         }
         

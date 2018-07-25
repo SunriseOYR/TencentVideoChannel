@@ -13,9 +13,9 @@
 @interface ORChannelViewModel : NSObject
 
 @property (nonatomic, strong) NSArray <ORChannelsModel *> *dataSource;
+@property (nonatomic, strong) NSArray *titles;
 
 @end
-
 
 @interface ORChannelsModel : NSObject
 

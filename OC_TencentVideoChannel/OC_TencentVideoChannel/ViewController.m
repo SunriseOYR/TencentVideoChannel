@@ -7,10 +7,13 @@
 //
 
 #import "ViewController.h"
+
 #import "ORChannelCell.h"
 #import "ORNormalChannelHeader.h"
 #import "ORMyChannelHeader.h"
 #import "ORScrollMenuView.h"
+
+#import "ORChannelViewModel.h"
 
 static CGFloat const menuHeight = 55.0;
 #define Tint_Back_Color [UIColor colorWithRed:245/255.f green:244/255.f blue:247/255.f alpha:1]
@@ -22,9 +25,8 @@ static CGFloat const menuHeight = 55.0;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) ORScrollMenuView *menuView;
-@property (nonatomic, strong) NSArray *dataSource;
 
-
+@property (nonatomic, strong) ORChannelViewModel *viewModel;
 
 @end
 
@@ -34,8 +36,7 @@ static CGFloat const menuHeight = 55.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    _dataSource = @[@"大IP", @"HOT", @"衍生", @"影视综", @"游戏", @"搞笑", @"生活", @"体育", @"时尚", @"音乐", @"育儿", @"旅游", @"视听体验", @"其他", @"默认"];
-    
+    _viewModel = [ORChannelViewModel new];
     
     self.view.backgroundColor = Tint_Back_Color;
     
@@ -50,7 +51,7 @@ static CGFloat const menuHeight = 55.0;
     
     self.menuView = [ORScrollMenuView new];
     self.menuView.frame = CGRectMake(0, menuY, [UIScreen mainScreen].bounds.size.width, menuHeight);
-    self.menuView.titles = _dataSource;
+    self.menuView.titles = _viewModel.titles;
     self.menuView.backgroundColor = Tint_Back_Color;
     self.menuView.hidden = YES;
     [self.view addSubview:self.menuView];
@@ -68,16 +69,10 @@ static CGFloat const menuHeight = 55.0;
     CGPoint point = [gesture locationInView:_collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
     
-    
     switch (gesture.state) {
             
-        case UIGestureRecognizerStateBegan: {
-            
-            if (nil == indexPath) {
-                break;
-            }
+        case UIGestureRecognizerStateBegan:
             [self.collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
-        }
             break;
             
         case UIGestureRecognizerStateChanged:
@@ -137,7 +132,7 @@ static CGFloat const menuHeight = 55.0;
     }
     
     NSIndexPath *nextIndexPath = [NSIndexPath indexPathForItem:0 inSection:self.menuView.currentIndex + 2];
-    if (nextIndexPath.section > _dataSource.count) {
+    if (nextIndexPath.section > _viewModel.dataSource.count-1) {
         return;
     }
     UICollectionViewLayoutAttributes *nextAttr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:nextIndexPath];
@@ -158,19 +153,19 @@ static CGFloat const menuHeight = 55.0;
 #pragma mark -- UICollectionViewDelegate && UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return _dataSource.count + 1;
+    return _viewModel.dataSource.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (section == _dataSource.count) {
-        return 31;
-    }
-    return section == 0 ? 21 : arc4random() % 11 + 3;
+    return _viewModel.dataSource[section].chanels.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ORChannelCell class]) forIndexPath:indexPath];
+    
+    ORChannelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ORChannelCell class]) forIndexPath:indexPath];
+    cell.titleL.text = _viewModel.dataSource[indexPath.section].chanels[indexPath.item];
+    return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -191,7 +186,7 @@ static CGFloat const menuHeight = 55.0;
         ORScrollMenuView *menu = [header viewWithTag:2019];
         if (!menu) {
             menu = [[ORScrollMenuView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, menuHeight)];
-            menu.titles = _dataSource;
+            menu.titles = _viewModel.titles;
             menu.tag = 2019;
             [header addSubview:menu];
             __weak typeof(self) weakSelf = self;
@@ -206,7 +201,7 @@ static CGFloat const menuHeight = 55.0;
     }
     
     ORNormalChannelHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ORNormalChannelHeader class]) forIndexPath:indexPath];
-    header.titleL.text = _dataSource[indexPath.section - 1];
+    header.titleL.text = _viewModel.dataSource[indexPath.section].title;
     return header;
 }
 
@@ -215,7 +210,7 @@ static CGFloat const menuHeight = 55.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-//    [collectionView moveItemAtIndexPath:sourceIndexPath toIndexPath:destinationIndexPath];
+    
 }
 
 #pragma mark -- UICollectionViewDelegateFlowLayout
@@ -229,7 +224,7 @@ static CGFloat const menuHeight = 55.0;
         return UIEdgeInsetsMake(H_P(15), H_P(15), 0, H_P(15));
     }
     
-    if (section == _dataSource.count) {
+    if (section == _viewModel.dataSource.count - 1) {
         return UIEdgeInsetsMake(0, H_P(15), 10, H_P(15));
     }
     

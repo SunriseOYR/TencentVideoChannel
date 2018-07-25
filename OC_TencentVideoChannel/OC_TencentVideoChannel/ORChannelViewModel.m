@@ -21,18 +21,18 @@
 
 - (void)_or_initDataSource {
     
-    NSArray *titles = @[@"大IP", @"HOT", @"衍生", @"影视综", @"游戏", @"搞笑", @"生活", @"体育", @"时尚", @"音乐", @"育儿", @"旅游", @"视听体验", @"其他", @"默认"];
+    _titles = @[@"大IP", @"HOT", @"衍生", @"影视综", @"游戏", @"搞笑", @"生活", @"体育", @"时尚", @"音乐", @"育儿", @"旅游", @"视听体验", @"其他", @"默认"];
     
-    NSMutableArray *chanleModels = [NSMutableArray arrayWithCapacity:titles.count];
+    NSMutableArray *chanleModels = [NSMutableArray arrayWithCapacity:_titles.count + 1];
     
-    [titles enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [chanleModels addObject:[ORChannelsModel or_chanelesModelWithTitle:@"我的频道" count:21]];
+
+    [_titles enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSInteger count = arc4random() % 11 + 3;
-        if (idx == 0) {
-            count = 22;
-        }
         [chanleModels addObject:[ORChannelsModel or_chanelesModelWithTitle:obj count:count]];
     }];
+    
     _dataSource = chanleModels.copy;
 }
 

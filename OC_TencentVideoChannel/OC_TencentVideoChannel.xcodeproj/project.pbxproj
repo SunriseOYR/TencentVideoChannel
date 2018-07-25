@@ -13,6 +13,7 @@
 		4D10BC6420FF8A5800FFCAAE /* ORNormalChannelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D10BC6320FF8A5800FFCAAE /* ORNormalChannelHeader.m */; };
 		4D10BC6620FF8A7E00FFCAAE /* ORNormalChannelHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D10BC6520FF8A7E00FFCAAE /* ORNormalChannelHeader.xib */; };
 		AD01042222E79850B3E57AE5 /* Pods_OC_TencentVideoChannel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECC11E70E30125825DD6095 /* Pods_OC_TencentVideoChannel.framework */; };
+		C950D0DF2108980E00D47000 /* ORChannelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C950D0DE2108980E00D47000 /* ORChannelViewModel.m */; };
 		C9DE649B20FF1F6A00AE3A66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DE649A20FF1F6A00AE3A66 /* AppDelegate.m */; };
 		C9DE649E20FF1F6A00AE3A66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DE649D20FF1F6A00AE3A66 /* ViewController.m */; };
 		C9DE64A320FF1F6E00AE3A66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9DE64A220FF1F6E00AE3A66 /* Assets.xcassets */; };
@@ -31,6 +32,8 @@
 		4D10BC6320FF8A5800FFCAAE /* ORNormalChannelHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORNormalChannelHeader.m; sourceTree = "<group>"; };
 		4D10BC6520FF8A7E00FFCAAE /* ORNormalChannelHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ORNormalChannelHeader.xib; path = ../../../Swift_TencentVideoChannel/TencentVideoChannel/Views/ORNormalChannelHeader.xib; sourceTree = "<group>"; };
 		5AB7E9B8FAC691E03613B2A2 /* Pods-OC_TencentVideoChannel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OC_TencentVideoChannel.release.xcconfig"; path = "Pods/Target Support Files/Pods-OC_TencentVideoChannel/Pods-OC_TencentVideoChannel.release.xcconfig"; sourceTree = "<group>"; };
+		C950D0DD2108980E00D47000 /* ORChannelViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ORChannelViewModel.h; sourceTree = "<group>"; };
+		C950D0DE2108980E00D47000 /* ORChannelViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ORChannelViewModel.m; sourceTree = "<group>"; };
 		C9DE649620FF1F6A00AE3A66 /* OC_TencentVideoChannel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OC_TencentVideoChannel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DE649920FF1F6A00AE3A66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C9DE649A20FF1F6A00AE3A66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				C9DE649A20FF1F6A00AE3A66 /* AppDelegate.m */,
 				C9DE649C20FF1F6A00AE3A66 /* ViewController.h */,
 				C9DE649D20FF1F6A00AE3A66 /* ViewController.m */,
+				C950D0DD2108980E00D47000 /* ORChannelViewModel.h */,
+				C950D0DE2108980E00D47000 /* ORChannelViewModel.m */,
 				4D10BC5920FF867400FFCAAE /* Main.storyboard */,
 				C9DE64CA20FF212100AE3A66 /* Views */,
 				C9DE64CB20FF249D00AE3A66 /* Others */,
@@ -255,6 +260,7 @@
 				4D10BC6420FF8A5800FFCAAE /* ORNormalChannelHeader.m in Sources */,
 				C9DE64C920FF211900AE3A66 /* ORScrollMenuView.m in Sources */,
 				C9DE64A920FF1F6E00AE3A66 /* main.m in Sources */,
+				C950D0DF2108980E00D47000 /* ORChannelViewModel.m in Sources */,
 				C9DE649B20FF1F6A00AE3A66 /* AppDelegate.m in Sources */,
 				4D10BC6120FF8A3F00FFCAAE /* ORMyChannelHeader.m in Sources */,
 			);

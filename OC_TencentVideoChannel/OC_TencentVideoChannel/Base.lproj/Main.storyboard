@@ -88,7 +88,7 @@
                                             </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动排序(小编推荐排序)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txh-Gk-R2q">
-                                            <rect key="frame" x="161" y="42" width="142" height="16"/>
+                                            <rect key="frame" x="167" y="42" width="142" height="16"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                                         </constraint>
                                         <constraint firstItem="Txh-Gk-R2q" firstAttribute="centerY" secondItem="y5q-7E-j78" secondAttribute="centerY" id="MdV-EM-xSv"/>
                                         <constraint firstItem="y5q-7E-j78" firstAttribute="centerY" secondItem="LfD-l8-Maf" secondAttribute="centerY" id="Tce-cK-2pf"/>
-                                        <constraint firstItem="y5q-7E-j78" firstAttribute="leading" secondItem="Txh-Gk-R2q" secondAttribute="trailing" constant="8" id="l5j-nd-484"/>
+                                        <constraint firstItem="y5q-7E-j78" firstAttribute="leading" secondItem="Txh-Gk-R2q" secondAttribute="trailing" constant="2" id="l5j-nd-484"/>
                                         <constraint firstAttribute="trailing" secondItem="y5q-7E-j78" secondAttribute="trailing" constant="15" id="lWn-eb-JlC"/>
                                         <constraint firstItem="LfD-l8-Maf" firstAttribute="centerY" secondItem="NjR-6F-IJ7" secondAttribute="centerY" constant="10" id="nXd-Rh-uiu"/>
                                     </constraints>

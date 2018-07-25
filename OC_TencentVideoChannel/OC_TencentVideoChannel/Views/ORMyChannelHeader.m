@@ -10,6 +10,12 @@
 
 @implementation ORMyChannelHeader
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.sortSwitch.transform = CGAffineTransformMakeScale(0.7, 0.7);
+}
+
 - (IBAction)action_sortSwitch:(UISwitch *)sender {
 }
 

@@ -44,6 +44,10 @@ static CGFloat const menuHeight = 55.0;
     [self.collectionView registerNib:[UINib nibWithNibName:@"ORNormalChannelHeader" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([ORNormalChannelHeader class])];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class])];
 
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_or_actionLongPressGesture:)];
+    [_collectionView addGestureRecognizer:longPressGesture];
+    
+    
     self.menuView = [ORScrollMenuView new];
     self.menuView.frame = CGRectMake(0, menuY, [UIScreen mainScreen].bounds.size.width, menuHeight);
     self.menuView.titles = _dataSource;
@@ -56,6 +60,38 @@ static CGFloat const menuHeight = 55.0;
         [weakSelf _or_collectionViewOffsetAjustMenuWithIndex:index];
     }];
     
+}
+
+#pragma mark -- private
+- (void)_or_actionLongPressGesture:(UILongPressGestureRecognizer *)gesture {
+    
+    CGPoint point = [gesture locationInView:_collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    
+    
+    switch (gesture.state) {
+            
+        case UIGestureRecognizerStateBegan: {
+            
+            if (nil == indexPath) {
+                break;
+            }
+            [self.collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
+        }
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            [self.collectionView updateInteractiveMovementTargetPosition:point];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            [self.collectionView endInteractiveMovement];
+            break;
+            
+        default:
+            [self.collectionView cancelInteractiveMovement];
+            break;
+    }
 }
 
 - (void)_or_collectionViewOffsetAjustMenuWithIndex:(NSInteger)index {
@@ -119,7 +155,7 @@ static CGFloat const menuHeight = 55.0;
 }
 
 
-#pragma mark -- UICollectionViewDelegate && UICollectionViewDataSource && UICollectionViewDelegateFlowLayout
+#pragma mark -- UICollectionViewDelegate && UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return _dataSource.count + 1;
@@ -173,6 +209,16 @@ static CGFloat const menuHeight = 55.0;
     header.titleL.text = _dataSource[indexPath.section - 1];
     return header;
 }
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    return indexPath.section == 0;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+//    [collectionView moveItemAtIndexPath:sourceIndexPath toIndexPath:destinationIndexPath];
+}
+
+#pragma mark -- UICollectionViewDelegateFlowLayout
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     

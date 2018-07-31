@@ -210,7 +210,9 @@ static CGFloat const menuHeight = 55.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    
+    NSMutableArray *array = self.viewModel.dataSource[sourceIndexPath.section].chanels.mutableCopy;
+    [array exchangeObjectAtIndex:sourceIndexPath.item withObjectAtIndex:destinationIndexPath.item];
+    self.viewModel.dataSource[sourceIndexPath.section].chanels = array.copy;
 }
 
 #pragma mark -- UICollectionViewDelegateFlowLayout

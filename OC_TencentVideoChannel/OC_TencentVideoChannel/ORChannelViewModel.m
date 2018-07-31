@@ -53,4 +53,20 @@
     return model;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.title forKey:@"title"];
+    [coder encodeObject:self.chanels forKey:@"chanels"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if (self) {
+        self.title = [coder decodeObjectForKey:@"title"];
+        self.chanels = [coder decodeObjectForKey:@"chanels"];
+    }
+    return self;
+}
+
 @end

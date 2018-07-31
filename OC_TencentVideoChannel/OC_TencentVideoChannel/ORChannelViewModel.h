@@ -17,7 +17,7 @@
 
 @end
 
-@interface ORChannelsModel : NSObject
+@interface ORChannelsModel : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSArray <NSString *>*chanels;
 @property (nonatomic, strong) NSString *title;

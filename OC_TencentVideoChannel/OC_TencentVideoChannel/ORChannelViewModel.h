@@ -15,6 +15,10 @@
 @property (nonatomic, strong) NSArray <ORChannelsModel *> *dataSource;
 @property (nonatomic, strong) NSArray *titles;
 
+- (void)or_moveItemAtIndexPath:(NSInteger)sourceIndex toIndexPath:(NSInteger)destinationIndex;
+
+- (BOOL)_or_save;
+
 @end
 
 @interface ORChannelsModel : NSObject<NSCoding>

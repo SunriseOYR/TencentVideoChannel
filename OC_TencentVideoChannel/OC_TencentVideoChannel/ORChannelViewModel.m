@@ -25,7 +25,13 @@
     
     NSMutableArray *chanleModels = [NSMutableArray arrayWithCapacity:_titles.count + 1];
     
-    [chanleModels addObject:[ORChannelsModel or_chanelesModelWithTitle:@"我的频道" count:21]];
+    ORChannelsModel *model = [self _or_cache];
+    
+    if (!model) {
+        model = [ORChannelsModel or_chanelesModelWithTitle:@"我的频道" count:21];
+    }
+    
+    [chanleModels addObject:model];
 
     [_titles enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -34,6 +40,33 @@
     }];
     
     _dataSource = chanleModels.copy;
+}
+
+- (id)_or_cache {
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"or_chanle_path.dat"];
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+}
+
+- (BOOL)_or_save {
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"or_chanle_path.dat"];
+
+    
+   return [NSKeyedArchiver archiveRootObject:_dataSource.firstObject toFile:path];
+}
+
+- (void)or_moveItemAtIndexPath:(NSInteger)sourceIndex toIndexPath:(NSInteger)destinationIndex {
+    
+    NSMutableArray *array = self.dataSource.firstObject.chanels.mutableCopy;
+    
+    id object = array[sourceIndex];
+    [array removeObject:object];
+    [array insertObject:object atIndex:destinationIndex];
+    
+    self.dataSource.firstObject.chanels = array.copy;
+    [self _or_save];
 }
 
 @end

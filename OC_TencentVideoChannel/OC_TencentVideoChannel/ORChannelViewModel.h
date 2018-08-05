@@ -15,6 +15,9 @@
 @property (nonatomic, strong) NSArray <ORChannelsModel *> *dataSource;
 @property (nonatomic, strong) NSArray *titles;
 
+@property (nonatomic, assign) BOOL canMove;
+
+
 - (void)or_moveItemAtIndexPath:(NSInteger)sourceIndex toIndexPath:(NSInteger)destinationIndex;
 
 - (BOOL)_or_save;

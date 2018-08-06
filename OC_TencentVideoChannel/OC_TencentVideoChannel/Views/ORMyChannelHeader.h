@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *sortDescriptionL;
 @property (weak, nonatomic) IBOutlet UISwitch *sortSwitch;
 
+@property (nonatomic, copy) void(^switchChanged)(BOOL isOn);
 
 @end

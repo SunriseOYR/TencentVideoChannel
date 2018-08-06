@@ -177,7 +177,11 @@ static CGFloat const menuHeight = 55.0;
     
     if (indexPath.section == 0) {
         ORMyChannelHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([ORMyChannelHeader class]) forIndexPath:indexPath];
-        
+        __weak typeof(self) weakSelf = self;
+        [header setSwitchChanged:^(BOOL isOn) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf.viewModel.canMove = isOn;
+        }];
         return header;
     }
     
@@ -206,11 +210,13 @@ static CGFloat const menuHeight = 55.0;
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0;
+
+    return indexPath.section == 0 && self.viewModel.canMove;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     
+    [self.viewModel or_moveItemAtIndexPath:sourceIndexPath.item toIndexPath:destinationIndexPath.item];
 }
 
 #pragma mark -- UICollectionViewDelegateFlowLayout

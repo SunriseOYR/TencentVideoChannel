@@ -17,6 +17,9 @@
 }
 
 - (IBAction)action_sortSwitch:(UISwitch *)sender {
+    if (self.switchChanged) {
+        self.switchChanged(sender.isOn);
+    }
 }
 
 

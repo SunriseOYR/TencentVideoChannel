@@ -11,11 +11,33 @@ import UIKit
 class ORChannelViewModel: NSObject {
 
     var dataSource:[ORChannelsModel]! = [ORChannelsModel]()
-    let titles:[String]! = ["大IP", "HOT", "衍生", "影视综", "游戏", "搞笑", "生活", "体育", "时尚", "音乐", "育儿", "旅游", "视听体验", "其他", "默认"]
+    
+    private var _titles:[String]! = ["大IP", "HOT", "衍生", "影视综", "游戏", "搞笑", "生活", "体育", "时尚", "音乐", "育儿", "旅游", "视听体验", "其他", "默认"]
+    var titles:[String]! {
+        get {
+            return _titles
+        }
+    }
+    
     var canMove:Bool = false
+    
+    override init() {
+        super.init()
+        _or_initDataSource()
+    }
     
     private func _or_initDataSource() {
         
+        var model:ORChannelsModel? = _or_cache() as? ORChannelsModel
+        if model == nil {
+            model = ORChannelsModel(aTitle: "我的频道", aCount: 21)
+        }
+        dataSource.append(model!)
+        
+        for title in _titles {
+            let count = arc4random() % 11 + 3
+            dataSource.append(ORChannelsModel(aTitle: title, aCount: Int(count)))
+        }
     }
     
     private func _or_cache() -> Any? {

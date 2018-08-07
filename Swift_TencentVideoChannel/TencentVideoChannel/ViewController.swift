@@ -18,7 +18,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private let menuIdentifer = "menuChannelIdf"
     private let normalIdentifer = "normalChannelIdf"
     
-    private let dataSource = ["大IP", "HOT", "衍生", "影视综", "游戏", "搞笑", "生活", "体育", "时尚", "音乐", "育儿", "旅游", "视听体验", "其他", "默认"]
+    private let viewModel:ORChannelViewModel = ORChannelViewModel()
     
     private var menuView :ORScrollMenuView!
     
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let menuY:CGFloat = UIScreen.main.bounds.height > 800 ? 75 + 24 : 75
         
         menuView  = ORScrollMenuView(frame: CGRect(x: 0, y: menuY, width: self.view.bounds.width, height: menuHeight))
-        menuView.titles = dataSource;
+        menuView.titles = viewModel.titles;
         menuView.backgroundColor = tintColor
         
         self.view.addSubview(menuView)
@@ -63,20 +63,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if section == dataSource.count {
-            return 31;
-        }
-        
-        return section == 0 ? 21 : Int(arc4random() % 11 + 3)
+        return viewModel.dataSource[section].chanels.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dataSource.count + 1
+        return viewModel.dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:ORChannelCell = collectionView.dequeueReusableCell(withReuseIdentifier: "channelCellIdf", for: indexPath) as! ORChannelCell
-        
+        cell.titleL.text = viewModel.dataSource[indexPath.section].chanels[indexPath.item]
         return cell
     }
     
@@ -94,7 +90,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 var view:ORScrollMenuView? = header.viewWithTag(2019) as? ORScrollMenuView;
                 if view == nil {
                     view = ORScrollMenuView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: menuHeight))
-                    view?.titles = dataSource;
+                    view?.titles = viewModel.titles;
                     view?.tag = 2019;
                     header.addSubview(view!);
                     view?.menuDidSelectedClosure = {[unowned self](index:Int) in
@@ -109,7 +105,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
             
             let header:ORNormalChannelHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: normalIdentifer, for: indexPath) as! ORNormalChannelHeader;
-            header.titleL.text = dataSource[indexPath.section - 1];
+            header.titleL.text = viewModel.dataSource[indexPath.section].title
             return header;
             
         }
@@ -149,7 +145,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }else {
             let nextIndexPath = IndexPath(item: 0, section: menuView.currentIndex + 2);
             
-            if nextIndexPath.section > dataSource.count {
+            if nextIndexPath.section > viewModel.dataSource.count-1 {
                 return;
             }
             
@@ -192,7 +188,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return UIEdgeInsetsMake(insetLeft, insetLeft, 0, insetLeft)
         }
         
-        if section == dataSource.count {
+        if section == viewModel.dataSource.count - 1 {
             return UIEdgeInsetsMake(0, insetLeft, 10, insetLeft)
         }
         

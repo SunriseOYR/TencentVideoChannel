@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ORNormalChannelHeader: UICollectionViewCell {
+class ORNormalChannelHeader: UICollectionReusableView {
 
     @IBOutlet weak var titleL: UILabel!
     

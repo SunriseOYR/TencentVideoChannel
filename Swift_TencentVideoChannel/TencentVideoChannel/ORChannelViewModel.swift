@@ -26,6 +26,15 @@ class ORChannelViewModel: NSObject {
         _or_initDataSource()
     }
     
+    public func or_moveItemAtIndex(sourceIndex:Int, destinationIndex:Int) {
+        var chanels = dataSource.first?.chanels;
+        let obj = chanels![sourceIndex]
+        chanels?.remove(at: sourceIndex)
+        chanels?.insert(obj, at: destinationIndex)
+        dataSource.first?.chanels = chanels
+        self._or_save()
+    }
+    
     private func _or_initDataSource() {
         
         var model:ORChannelsModel? = _or_cache() as? ORChannelsModel

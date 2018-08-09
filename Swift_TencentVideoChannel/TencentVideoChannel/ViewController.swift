@@ -33,6 +33,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.register(UINib.init(nibName: "ORNormalChannelHeader", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: normalIdentifer)
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: menuIdentifer)
 
+        let gesture = UILongPressGestureRecognizer.init(target: self, action: #selector(_or_actionLongPressGesture(gesture:)))
+        collectionView.addGestureRecognizer(gesture);
+//        Selector.init(stringLiteral: _or)
+        
         let menuY:CGFloat = UIScreen.main.bounds.height > 800 ? 75 + 24 : 75
         
         menuView  = ORScrollMenuView(frame: CGRect(x: 0, y: menuY, width: self.view.bounds.width, height: menuHeight))
@@ -48,6 +52,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
 
+    @objc private func _or_actionLongPressGesture(gesture:UILongPressGestureRecognizer) {
+        
+        let point = gesture.location(in: collectionView);
+        let indexPath = collectionView.indexPathForItem(at: point)
+        
+        if indexPath == nil {
+            return;
+        }
+        
+        switch gesture.state {
+        case .began:
+            collectionView.beginInteractiveMovementForItem(at: indexPath!)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(point)
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
+    
     private func collectionViewOffsetAjustMenuWithIndex(index:Int) {
         
         isDraging = false;
@@ -110,6 +135,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
         }
         return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 0 && viewModel.canMove == true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        viewModel.or_moveItemAtIndex(sourceIndex: sourceIndexPath.item, destinationIndex: destinationIndexPath.item)
     }
     
     //MARK: - UIScrollViewDelegate

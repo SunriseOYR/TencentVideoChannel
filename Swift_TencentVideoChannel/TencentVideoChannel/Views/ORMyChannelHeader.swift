@@ -12,6 +12,17 @@ class ORMyChannelHeader: UICollectionReusableView {
     @IBOutlet weak var sortDescriptionL: UILabel!
     @IBOutlet weak var sortSwitch: UISwitch!
     
+    var switchChanged:((Bool)->Void)?
+    
+    
     @IBAction func action_sortSwitch(_ sender: UISwitch) {
+        if switchChanged != nil {
+            switchChanged!(sender.isOn)
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.sortSwitch.transform = CGAffineTransform.init(scaleX: 0.7, y: 0.7)
     }
 }

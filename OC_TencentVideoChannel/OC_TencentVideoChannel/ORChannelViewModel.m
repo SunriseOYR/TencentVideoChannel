@@ -23,6 +23,8 @@
     
     _titles = @[@"大IP", @"HOT", @"衍生", @"影视综", @"游戏", @"搞笑", @"生活", @"体育", @"时尚", @"音乐", @"育儿", @"旅游", @"视听体验", @"其他", @"默认"];
     
+    self.canMove = YES;
+    
     NSMutableArray *chanleModels = [NSMutableArray arrayWithCapacity:_titles.count + 1];
     
     ORChannelsModel *model = [self _or_cache];

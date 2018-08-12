@@ -47,6 +47,7 @@ class ORChannelViewModel: NSObject {
             let count = arc4random() % 11 + 3
             dataSource.append(ORChannelsModel(aTitle: title, aCount: Int(count)))
         }
+        self.canMove = true
     }
     
     private func _or_cache() -> Any? {
@@ -57,7 +58,7 @@ class ORChannelViewModel: NSObject {
     
     private func _or_save() {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first?.appending("/or_chanle_path.dat")
-        NSKeyedArchiver.archiveRootObject(self.dataSource, toFile: path!)
+        NSKeyedArchiver.archiveRootObject(self.dataSource.first ?? ORChannelsModel(aTitle: "我的频道", aCount: 21), toFile: path!)
     }
 }
 

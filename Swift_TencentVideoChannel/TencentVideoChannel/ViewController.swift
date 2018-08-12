@@ -106,6 +106,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             if indexPath.section == 0 {
                 let header:ORMyChannelHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "myChannelIdf", for: indexPath) as! ORMyChannelHeader;
+                header.switchChanged = {[unowned self](isOn:Bool) in
+                    self.viewModel.canMove = isOn
+                }
                 return header;
             }
             

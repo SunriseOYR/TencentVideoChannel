@@ -6,7 +6,7 @@
 //  Copyright © 2018 欧阳荣. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class ORChannelsModel;
 
@@ -21,6 +21,9 @@
 - (void)or_moveItemAtIndexPath:(NSInteger)sourceIndex toIndexPath:(NSInteger)destinationIndex;
 
 - (BOOL)_or_save;
+
+
+- (CGFloat)or_lastBottowInsetWithCollectionView:(UICollectionView *)collectionView;
 
 @end
 

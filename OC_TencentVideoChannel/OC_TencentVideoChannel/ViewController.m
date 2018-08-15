@@ -61,9 +61,21 @@ static CGFloat const menuHeight = 55.0;
         [weakSelf _or_collectionViewOffsetAjustMenuWithIndex:index];
     }];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self _or_resetCollectionInset];
+    });
 }
 
 #pragma mark -- private
+
+- (void)_or_resetCollectionInset {
+    
+    _lastBottowInset = [self.viewModel or_lastBottowInsetWithCollectionView:self.collectionView];
+    if (_lastBottowInset != 0) {
+        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:self.viewModel.dataSource.count - 1]];
+    }
+}
+
 - (void)_or_actionLongPressGesture:(UILongPressGestureRecognizer *)gesture {
     
     CGPoint point = [gesture locationInView:_collectionView];
@@ -231,7 +243,7 @@ static CGFloat const menuHeight = 55.0;
     }
     
     if (section == _viewModel.dataSource.count - 1) {
-        return UIEdgeInsetsMake(0, H_P(15), 10, H_P(15));
+        return UIEdgeInsetsMake(0, H_P(15), _lastBottowInset, H_P(15));
     }
     
     return UIEdgeInsetsMake(0, H_P(15), 0, H_P(15));

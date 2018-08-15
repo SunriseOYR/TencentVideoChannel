@@ -71,6 +71,28 @@
     [self _or_save];
 }
 
+- (CGFloat)or_lastBottowInsetWithCollectionView:(UICollectionView *)collectionView {
+    
+    if (self.dataSource.count < 1) {
+        return 0;
+    }
+    
+    NSInteger section = self.dataSource.count - 1;
+    
+    UICollectionViewLayoutAttributes *attr = [collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+    
+    CGFloat maxInset = CGRectGetMaxY(attr.frame);
+    
+    if (self.dataSource[section].chanels.count > 0) {
+        UICollectionViewLayoutAttributes *cellAttr = [collectionView layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:self.dataSource[section].chanels.count - 1 inSection:section]];
+        maxInset = CGRectGetMaxY(cellAttr.frame);
+    }
+    
+    CGFloat inset = collectionView.bounds.size.height - (maxInset - attr.frame.origin.y) - attr.size.height;
+    
+    return MAX(0, inset);
+}
+
 @end
 
 @implementation ORChannelsModel

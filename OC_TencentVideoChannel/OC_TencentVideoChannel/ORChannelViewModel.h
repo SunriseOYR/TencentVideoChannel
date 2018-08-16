@@ -22,8 +22,10 @@
 
 - (BOOL)_or_save;
 
-
 - (CGFloat)or_lastBottowInsetWithCollectionView:(UICollectionView *)collectionView;
+
+- (UIEdgeInsets)or_insetsForSection:(NSInteger)section;
+- (CGSize)or_referenceSizeForHeaderInSection:(NSInteger)section;
 
 @end
 

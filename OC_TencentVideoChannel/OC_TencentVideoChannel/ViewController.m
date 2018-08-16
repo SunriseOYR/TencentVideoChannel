@@ -234,19 +234,12 @@ static CGFloat const menuHeight = 55.0;
 #pragma mark -- UICollectionViewDelegateFlowLayout
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
-    if (section == 0) {
-        return UIEdgeInsetsMake(0, H_P(15), H_P(15), H_P(15));
-    }
-    if (section == 1) {
-        return UIEdgeInsetsMake(H_P(15), H_P(15), 0, H_P(15));
-    }
-    
+        
     if (section == _viewModel.dataSource.count - 1) {
         return UIEdgeInsetsMake(0, H_P(15), _lastBottowInset, H_P(15));
     }
     
-    return UIEdgeInsetsMake(0, H_P(15), 0, H_P(15));
+    return [self.viewModel or_insetsForSection:section];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

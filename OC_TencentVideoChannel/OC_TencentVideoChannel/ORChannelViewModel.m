@@ -7,6 +7,7 @@
 //
 
 #import "ORChannelViewModel.h"
+#import "ORScrollMenuView.h"
 
 @implementation ORChannelViewModel
 
@@ -91,6 +92,17 @@
     CGFloat inset = collectionView.bounds.size.height - (maxInset - attr.frame.origin.y) - attr.size.height;
     
     return MAX(0, inset);
+}
+
+- (UIEdgeInsets)or_insetsForSection:(NSInteger)section {
+    
+    if (section == 0) {
+        return UIEdgeInsetsMake(0, H_P(15), H_P(15), H_P(15));
+    }
+    if (section == 1) {
+        return UIEdgeInsetsMake(H_P(15), H_P(15), 0, H_P(15));
+    }
+    return UIEdgeInsetsMake(0, H_P(15), 0, H_P(15));
 }
 
 @end

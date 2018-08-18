@@ -23,6 +23,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     private var menuView :ORScrollMenuView!
     
     var isDraging = false
+    var lastBottowInset:CGFloat = 0.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             self.collectionViewOffsetAjustMenuWithIndex(index: index)
         }
         
+        let aftertime = DispatchTime.now() + 0.3
+        DispatchQueue.main.asyncAfter(deadline: aftertime) {
+            self._or_resetCollectionInset()
+        }
+        
     }
 
     @objc private func _or_actionLongPressGesture(gesture:UILongPressGestureRecognizer) {
@@ -75,6 +82,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     private func _or_resetCollectionInset() {
         
+        if self.viewModel.dataSource.count < 1 {
+            return;
+        }
+        
+        let section = self.viewModel.dataSource.count - 1;
+        
+        
+        let attr = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader, at: IndexPath(item: 0, section: section))
+        
+        var maxSet = attr?.frame.maxY
+        
+        if self.viewModel.dataSource[section].chanels.count > 0 {
+            let cellAttr = collectionView.layoutAttributesForItem(at: IndexPath(item: self.viewModel.dataSource[section].chanels.count - 1, section: section))
+            maxSet = cellAttr?.frame.maxY
+        }
+        
+        let inset = collectionView.bounds.height - (maxSet! - (attr?.frame.minY)!) - (attr?.size.height)!
+        
+        lastBottowInset = max(0.0, inset)
+        
+        if lastBottowInset > 0 {
+            collectionView.reloadSections(IndexSet.init(integer: section))
+        }
     }
     
     
@@ -230,7 +260,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         if section == viewModel.dataSource.count - 1 {
-            return UIEdgeInsetsMake(0, insetLeft, 10, insetLeft)
+            return UIEdgeInsetsMake(0, insetLeft, lastBottowInset, insetLeft)
         }
         
         return UIEdgeInsetsMake(0, insetLeft, 0, insetLeft)

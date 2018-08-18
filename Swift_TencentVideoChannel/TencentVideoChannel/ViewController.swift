@@ -73,6 +73,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
     }
     
+    private func _or_resetCollectionInset() {
+        
+    }
+    
+    
     private func collectionViewOffsetAjustMenuWithIndex(index:Int) {
         
         isDraging = false;

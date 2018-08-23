@@ -12,12 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fHZ-LW-Lec" customClass="ORNormalChannelHeader">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0J9-Zy-ivl" customClass="ORNormalChannelHeader" customModule="TencentVideoChannel" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJr-KG-UmE">
-                    <rect key="frame" x="15" y="14.5" width="42" height="21"/>
+                    <rect key="frame" x="15" y="15" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -27,14 +27,14 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="pJr-KG-UmE" firstAttribute="centerY" secondItem="hzp-Z4-0sM" secondAttribute="centerY" id="6GB-u8-jOW"/>
-                <constraint firstItem="pJr-KG-UmE" firstAttribute="leading" secondItem="hzp-Z4-0sM" secondAttribute="leading" constant="15" id="g6q-Oc-1fQ"/>
+                <constraint firstItem="pJr-KG-UmE" firstAttribute="leading" secondItem="w64-vv-0H3" secondAttribute="leading" constant="15" id="HdU-4S-Sc4"/>
+                <constraint firstItem="pJr-KG-UmE" firstAttribute="centerY" secondItem="w64-vv-0H3" secondAttribute="centerY" id="gru-8R-STy"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="hzp-Z4-0sM"/>
+            <viewLayoutGuide key="safeArea" id="w64-vv-0H3"/>
             <connections>
-                <outlet property="titleL" destination="pJr-KG-UmE" id="avb-R9-f9f"/>
+                <outlet property="titleL" destination="pJr-KG-UmE" id="hGD-S0-pfd"/>
             </connections>
-            <point key="canvasLocation" x="79" y="200"/>
+            <point key="canvasLocation" x="72" y="351"/>
         </collectionReusableView>
     </objects>
 </document>

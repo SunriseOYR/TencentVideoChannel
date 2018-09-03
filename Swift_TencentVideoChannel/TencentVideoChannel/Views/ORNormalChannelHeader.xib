@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0J9-Zy-ivl" customClass="ORNormalChannelHeader" customModule="TencentVideoChannel" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Kk7-ee-gdi" customClass="ORNormalChannelHeader">
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -27,14 +27,18 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="pJr-KG-UmE" firstAttribute="leading" secondItem="w64-vv-0H3" secondAttribute="leading" constant="15" id="HdU-4S-Sc4"/>
-                <constraint firstItem="pJr-KG-UmE" firstAttribute="centerY" secondItem="w64-vv-0H3" secondAttribute="centerY" id="gru-8R-STy"/>
+                <constraint firstItem="pJr-KG-UmE" firstAttribute="leading" secondItem="Wmt-qF-fFP" secondAttribute="leading" constant="15" id="Mel-fF-bwc">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="ib_adaptConstant" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="pJr-KG-UmE" firstAttribute="centerY" secondItem="Wmt-qF-fFP" secondAttribute="centerY" id="eAP-Uh-Rht"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="w64-vv-0H3"/>
+            <viewLayoutGuide key="safeArea" id="Wmt-qF-fFP"/>
             <connections>
-                <outlet property="titleL" destination="pJr-KG-UmE" id="hGD-S0-pfd"/>
+                <outlet property="titleL" destination="pJr-KG-UmE" id="R4A-GD-UBW"/>
             </connections>
-            <point key="canvasLocation" x="72" y="351"/>
+            <point key="canvasLocation" x="108" y="490"/>
         </collectionReusableView>
     </objects>
 </document>
